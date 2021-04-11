@@ -1,0 +1,33 @@
+{
+    "project": "program",
+    "compiler": {
+        "path": "gcc",
+        "flags": "",
+        "include_path": [
+            "include/",
+            "third-party/toolbox/",
+            "third-party/tools-storage/include/",
+            "third-party/tools-stuff/include/"
+        ],
+        "library_path": [
+            "lib/"
+        ]
+    },
+    "main": {
+        "path": "src/main.c",
+        "output_name": "main.out",
+        "flags": "",
+        "binaries": "-lncursesw"
+    },
+    "sources": [
+        { "path": "src/Menu.c", "flags": "", "binaries": "" },
+        { "path": "src/Node.c", "flags": "", "binaries": "" },
+        { "path": "src/NodeViewNonRecursive.c", "flags": "", "binaries": "" },
+        { "path": "src/NodeViewRecursive.c", "flags": "", "binaries": "" },
+        { "path": "src/Utils.c", "flags": "", "binaries": "" },
+        { "path": "src/Window.c", "flags": "", "binaries": "" }
+    ],
+    "extra_commands": [
+        "cp build/src/main.out bin/main"
+    ]
+}
