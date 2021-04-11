@@ -36,4 +36,6 @@ void updateWindow();
 
 void newWindow(int name[64], int x, int y, int w, int h, void (*updateContents)(), void (*handleInput)(int, int));
 
+void windowPrintAttr(int str[], int attr);
+
 #endif

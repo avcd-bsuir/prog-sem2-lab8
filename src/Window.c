@@ -62,3 +62,11 @@ void newWindow(int name[64], int x, int y, int w, int h, void (*updateContents)(
     win->parent = window;
     window = win;
 }
+
+void windowPrintAttr(int str[], int attr) {
+    int i = 0;
+    while (str[i] != 0) {
+        waddch(window->window, str[i] | attr);
+        i++;
+    }
+}

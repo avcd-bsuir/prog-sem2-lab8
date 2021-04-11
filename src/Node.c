@@ -46,9 +46,9 @@ void pushNode(Tree *tree, int word[64], int translation[64]) {
     tree->count++;
 }
 
-void deleteNodeFunction(Node **root, int word[64]) {
+int deleteNodeFunction(Node **root, int word[64]) {
     if (!root || !(*root))
-        return;
+        return 0;
 
     Node *parent = NULL, *current = *root;
 
@@ -62,7 +62,7 @@ void deleteNodeFunction(Node **root, int word[64]) {
     }
 
     if (!current)
-        return;
+        return 0;
 
     Node *child = NULL;
     if (!current->left || !current->right) {
@@ -93,13 +93,14 @@ void deleteNodeFunction(Node **root, int word[64]) {
 
         memcpy(current->word, data, 64 * sizeof(int));
     }
+    return 1;
 }
 
 void deleteNode(Tree *tree, int word[64]) {
     if (!tree)
         throwError(L"deleteNode() was given a null pointer");
-    deleteNodeFunction(&tree->root, word);
-    tree->count--;
+    if (deleteNodeFunction(&tree->root, word))
+        tree->count--;
 }
 
 void deleteTreeFunction(Node **node) {

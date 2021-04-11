@@ -9,7 +9,7 @@ fi
 [ ! -d build ] && mkdir build
 
 main_should_recompile="False"
-total=7
+total=10
 current=1
 
 start=$(date '+%s')
@@ -72,6 +72,36 @@ then
 fi
 
 recompile="False"
+printHeader src/NodeAdd.c
+checkRecomp src/NodeAdd.c build/src/NodeAdd.hash build/src/ build/src/NodeAdd.o 
+if [ $recompile == "True" ]
+then
+    gcc -c -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/NodeAdd.c -o build/src/NodeAdd.o 
+    checkSuccess build/src/NodeAdd.o build/src/NodeAdd.hash
+    echo "$(md5sum src/NodeAdd.c)" > build/src/NodeAdd.hash
+fi
+
+recompile="False"
+printHeader src/NodeDeleteAll.c
+checkRecomp src/NodeDeleteAll.c build/src/NodeDeleteAll.hash build/src/ build/src/NodeDeleteAll.o 
+if [ $recompile == "True" ]
+then
+    gcc -c -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/NodeDeleteAll.c -o build/src/NodeDeleteAll.o 
+    checkSuccess build/src/NodeDeleteAll.o build/src/NodeDeleteAll.hash
+    echo "$(md5sum src/NodeDeleteAll.c)" > build/src/NodeDeleteAll.hash
+fi
+
+recompile="False"
+printHeader src/NodeEdit.c
+checkRecomp src/NodeEdit.c build/src/NodeEdit.hash build/src/ build/src/NodeEdit.o 
+if [ $recompile == "True" ]
+then
+    gcc -c -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/NodeEdit.c -o build/src/NodeEdit.o 
+    checkSuccess build/src/NodeEdit.o build/src/NodeEdit.hash
+    echo "$(md5sum src/NodeEdit.c)" > build/src/NodeEdit.hash
+fi
+
+recompile="False"
 printHeader src/NodeViewNonRecursive.c
 checkRecomp src/NodeViewNonRecursive.c build/src/NodeViewNonRecursive.hash build/src/ build/src/NodeViewNonRecursive.o 
 if [ $recompile == "True" ]
@@ -117,7 +147,7 @@ checkRecomp src/main.c build/src/main.hash build/src/ build/src/main.out
 if [ $recompile == "True" ] || [ $main_should_recompile == "True" ]
 then
     printf -- "..... \e[38;05;3;49;04;27mmain.c\e[0m \e[38;05;10;49;24;27mis updating, because other files have changed\e[0m\n"
-    gcc -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/main.c -o build/src/main.out build/src/Menu.o build/src/Node.o build/src/NodeViewNonRecursive.o build/src/NodeViewRecursive.o build/src/Utils.o build/src/Window.o -lncursesw
+    gcc -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/main.c -o build/src/main.out build/src/Menu.o build/src/Node.o build/src/NodeAdd.o build/src/NodeDeleteAll.o build/src/NodeEdit.o build/src/NodeViewNonRecursive.o build/src/NodeViewRecursive.o build/src/Utils.o build/src/Window.o -lncursesw
     checkSuccess build/src/main.out build/src/main.hash
     echo "$(md5sum src/main.c)" > build/src/main.hash
 fi

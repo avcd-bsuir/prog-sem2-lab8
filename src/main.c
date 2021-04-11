@@ -8,6 +8,7 @@
  * 11 apr 2021
  */
 
+#define MAIN
 #define KEY_ESC 27
 #define KEY_RETURN 10
 #define NCURSES_WIDECHAR 1
@@ -21,6 +22,11 @@
 
 #include "Menu.h"
 #include "Node.h"
+#include "NodeAdd.h"
+#include "NodeDeleteAll.h"
+// #include "NodeEdit.h"
+#include "NodeViewNonRecursive.h"
+#include "NodeViewRecursive.h"
 #include "Utils.h"
 #include "Window.h"
 
@@ -50,10 +56,12 @@ int main(int argc, char *argv[]) {
     noecho();              // Disable echo
 
     // Create menu window
-    menu.addOption(L"Hello", shutdown);
+    menu.addOption(L"Add word", nodeAdd.createWindow);
+    menu.addOption(L"Delete dictionary", nodeDeleteAll.createWindow);
     menu.addOption(L"-", shutdown);
-    menu.addOption(L"View dictionary (recursive)", shutdown);
-    menu.addOption(L"View dictionary (non-recursive)", shutdown);
+    menu.addOption(L"View dictionary (recursive)", nodeViewRecursive.createWindow);
+    menu.addOption(L"View dictionary (non-recursive)", nodeViewNonRecursive.createWindow);
+    // menu.addOption(L"View dictionary (tree)", shutdown);
     menu.addOption(L"-", shutdown);
     menu.addOption(L"Exit", shutdown);
     menu.createWindow();
@@ -62,44 +70,3 @@ int main(int argc, char *argv[]) {
     while (true)
         updateWindow();
 }
-//
-//     // Root window
-//     windowPush("Binary trees", 0, 0, cols, rows, &UC_menu, &HI_menu);
-//
-//     // Menu
-//     menuAddOption("Add new word", &MENU_nodePush);
-//     menuAddOption("Delete dictionary", &MENU_nodeDeleteAll);
-//     menuAddOption("-", &cleanup);
-//     menuAddOption("View recursive", &MENU_viewRecursive);
-//     menuAddOption("View non-recursive", &MENU_viewNonRecursive);
-//     // menuAddOption("View as tree", &MENU_viewNonRecursive);
-//     menuAddOption("-", &cleanup);
-//     menuAddOption("Exit", &cleanup);
-//
-//     // Dictionary
-//     // DICTIONARY_10;
-//     // DICTIONARY_200;
-//
-//     while (true) {
-//         // Updating
-//         windowTop()->updateContents(windowTop());
-//
-//         // Input handling
-//         input = wgetch(windowTop()->window);
-//         switch (input) {
-//         case KEY_RESIZE:
-//             break;
-//         case KEY_ESC:
-//             windowPop();
-//             if (!window_stack)
-//                 cleanup();
-//             break;
-//         default:
-//             windowTop()->handleInput(input, windowTop());
-//             break;
-//         }
-//         frame++;
-//     }
-//
-//     return 0;
-// }

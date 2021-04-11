@@ -1,6 +1,6 @@
 // License: CC BY-NC-SA 4.0
 /*
- * NodeViewRecursive.h
+ * NodeViewTree.h
  *
  * Binary trees.
  *
@@ -8,8 +8,8 @@
  * 11 apr 2021
  */
 
-#ifndef NODEVIEWRECURSIVE_H
-#define NODEVIEWRECURSIVE_H
+#ifndef NODEVIEWTREE_H
+#define NODEVIEWTREE_H
 
 #define KEY_ESC 27
 #define KEY_RETURN 10
@@ -23,12 +23,10 @@
 #include "Utils.h"
 #include "Window.h"
 
-struct NodeViewRecursive {
-    int choice, start, end, counter;
-    int word[64], translation[64];
+struct NodeViewTree {
     void (*createWindow)();
 };
 
-extern struct NodeViewRecursive nodeViewRecursive;
+extern struct NodeViewTree nodeViewTree;
 
 #endif

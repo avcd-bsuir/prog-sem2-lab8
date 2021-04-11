@@ -91,7 +91,11 @@
         "typeinfo": "c",
         "valarray": "c",
         "*.rh": "c",
-        "utils.h": "c"
+        "utils.h": "c",
+        "nodeviewnonrecursive.h": "c",
+        "nodeviewrecursive.h": "c",
+        "node_nodepush.h": "c",
+        "nodeedit.h": "c"
     },
     "cSpell.words": [
         "uc"

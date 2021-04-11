@@ -1,6 +1,6 @@
 // License: CC BY-NC-SA 4.0
 /*
- * NodeViewRecursive.h
+ * NodeDeleteAll.h
  *
  * Binary trees.
  *
@@ -8,8 +8,8 @@
  * 11 apr 2021
  */
 
-#ifndef NODEVIEWRECURSIVE_H
-#define NODEVIEWRECURSIVE_H
+#ifndef NODEDELETEALL_H
+#define NODEDELETEALL_H
 
 #define KEY_ESC 27
 #define KEY_RETURN 10
@@ -19,16 +19,14 @@
 #include <string.h>
 
 #include "Node.h"
-#include "NodeEdit.h"
 #include "Utils.h"
 #include "Window.h"
 
-struct NodeViewRecursive {
-    int choice, start, end, counter;
-    int word[64], translation[64];
+struct NodeDeleteAll {
+    int option;
     void (*createWindow)();
 };
 
-extern struct NodeViewRecursive nodeViewRecursive;
+extern struct NodeDeleteAll nodeDeleteAll;
 
 #endif

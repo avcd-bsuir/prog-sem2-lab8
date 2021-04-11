@@ -22,7 +22,7 @@ void addOption(int text[64], void (*function)()) {
     menu.options_size++;
 }
 
-void updateContents() {
+void menuUpdateContents() {
     int max = 0, center_offset_x = 0, center_offset_y = 0;
     for (int i = 0; i < menu.options_size; i++)
         if (length(menu.options[i].text) > max)
@@ -43,7 +43,7 @@ void updateContents() {
     }
 }
 
-void handleInput(int ret, int inp) {
+void menuHandleInput(int ret, int inp) {
     switch (inp) {
     case KEY_UP:
         if (menu.choice > 0) {
@@ -71,11 +71,11 @@ void handleInput(int ret, int inp) {
         break;
     }
     if (menu.options[menu.choice].text[0] == '-')
-        handleInput(ret, inp);
+        menuHandleInput(ret, inp);
 }
 
-void createWindow() {
-    newWindow(L"Binary trees - menu", 0, 0, getmaxx(stdscr), getmaxy(stdscr), updateContents, handleInput);
+void menuCreateWindow() {
+    newWindow(L"Binary trees - menu", 0, 0, getmaxx(stdscr), getmaxy(stdscr), menuUpdateContents, menuHandleInput);
     menu.choice = 0;
     menu.start = 0;
     menu.end = getmaxy(window->window);
@@ -89,5 +89,5 @@ struct Menu menu = {
     .end = 0,
 
     .addOption = addOption,
-    .createWindow = createWindow
+    .createWindow = menuCreateWindow
 };
