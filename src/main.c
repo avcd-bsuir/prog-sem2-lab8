@@ -27,6 +27,7 @@
 // #include "NodeEdit.h"
 #include "NodeViewNonRecursive.h"
 #include "NodeViewRecursive.h"
+#include "NodeViewTree.h"
 #include "Utils.h"
 #include "Window.h"
 
@@ -46,7 +47,8 @@ void print(Node *node) {
 }
 
 int main(int argc, char *argv[]) {
-    DICTIONARY_10;
+    // DICTIONARY_10;
+    DICTIONARY_200;
 
     // Setup
     setlocale(LC_ALL, ""); // Support for cyrillic letters
@@ -61,7 +63,7 @@ int main(int argc, char *argv[]) {
     menu.addOption(L"-", shutdown);
     menu.addOption(L"View dictionary (recursive)", nodeViewRecursive.createWindow);
     menu.addOption(L"View dictionary (non-recursive)", nodeViewNonRecursive.createWindow);
-    // menu.addOption(L"View dictionary (tree)", shutdown);
+    menu.addOption(L"View dictionary (tree)", nodeViewTree.createWindow);
     menu.addOption(L"-", shutdown);
     menu.addOption(L"Exit", shutdown);
     menu.createWindow();

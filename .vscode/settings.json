@@ -95,7 +95,9 @@
         "nodeviewnonrecursive.h": "c",
         "nodeviewrecursive.h": "c",
         "node_nodepush.h": "c",
-        "nodeedit.h": "c"
+        "nodeedit.h": "c",
+        "nodeviewtree.h": "c",
+        "dictionary.h": "c"
     },
     "cSpell.words": [
         "uc"

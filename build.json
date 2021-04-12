@@ -27,6 +27,7 @@
         { "path": "src/NodeEdit.c", "flags": "", "binaries": "" },
         { "path": "src/NodeViewNonRecursive.c", "flags": "", "binaries": "" },
         { "path": "src/NodeViewRecursive.c", "flags": "", "binaries": "" },
+        { "path": "src/NodeViewTree.c", "flags": "", "binaries": "" },
         { "path": "src/Utils.c", "flags": "", "binaries": "" },
         { "path": "src/Window.c", "flags": "", "binaries": "" }
     ],

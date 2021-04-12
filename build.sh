@@ -9,7 +9,7 @@ fi
 [ ! -d build ] && mkdir build
 
 main_should_recompile="False"
-total=10
+total=11
 current=1
 
 start=$(date '+%s')
@@ -122,6 +122,16 @@ then
 fi
 
 recompile="False"
+printHeader src/NodeViewTree.c
+checkRecomp src/NodeViewTree.c build/src/NodeViewTree.hash build/src/ build/src/NodeViewTree.o 
+if [ $recompile == "True" ]
+then
+    gcc -c -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/NodeViewTree.c -o build/src/NodeViewTree.o 
+    checkSuccess build/src/NodeViewTree.o build/src/NodeViewTree.hash
+    echo "$(md5sum src/NodeViewTree.c)" > build/src/NodeViewTree.hash
+fi
+
+recompile="False"
 printHeader src/Utils.c
 checkRecomp src/Utils.c build/src/Utils.hash build/src/ build/src/Utils.o 
 if [ $recompile == "True" ]
@@ -147,7 +157,7 @@ checkRecomp src/main.c build/src/main.hash build/src/ build/src/main.out
 if [ $recompile == "True" ] || [ $main_should_recompile == "True" ]
 then
     printf -- "..... \e[38;05;3;49;04;27mmain.c\e[0m \e[38;05;10;49;24;27mis updating, because other files have changed\e[0m\n"
-    gcc -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/main.c -o build/src/main.out build/src/Menu.o build/src/Node.o build/src/NodeAdd.o build/src/NodeDeleteAll.o build/src/NodeEdit.o build/src/NodeViewNonRecursive.o build/src/NodeViewRecursive.o build/src/Utils.o build/src/Window.o -lncursesw
+    gcc -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/main.c -o build/src/main.out build/src/Menu.o build/src/Node.o build/src/NodeAdd.o build/src/NodeDeleteAll.o build/src/NodeEdit.o build/src/NodeViewNonRecursive.o build/src/NodeViewRecursive.o build/src/NodeViewTree.o build/src/Utils.o build/src/Window.o -lncursesw
     checkSuccess build/src/main.out build/src/main.hash
     echo "$(md5sum src/main.c)" > build/src/main.hash
 fi

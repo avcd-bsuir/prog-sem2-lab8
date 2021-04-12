@@ -15,6 +15,7 @@
 #define KEY_RETURN 10
 #define NCURSES_WIDECHAR 1
 
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -23,7 +24,12 @@
 #include "Utils.h"
 #include "Window.h"
 
+#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+#define MAX(a, b) (((a) > (b)) ? (a) : (b))
+
 struct NodeViewTree {
+    int *buffer;
+    int x, y, w, h;
     void (*createWindow)();
 };
 
