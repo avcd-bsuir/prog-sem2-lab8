@@ -23,7 +23,8 @@ void throwError(int text[]) {
 
 int length(int text[]) {
     int len = 0;
-    while (text[++len] != 0);
+    while (text[len] != 0)
+        len++;
     return len;
 }
 

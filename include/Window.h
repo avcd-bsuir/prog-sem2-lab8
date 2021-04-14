@@ -5,7 +5,7 @@
  * Binary trees.
  *
  * Written by AlexeyFilich
- * 11 apr 2021
+ * 13 apr 2021
  */
 
 #ifndef WINDOW_H

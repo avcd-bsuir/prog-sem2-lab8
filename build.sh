@@ -9,7 +9,7 @@ fi
 [ ! -d build ] && mkdir build
 
 main_should_recompile="False"
-total=11
+total=15
 current=1
 
 start=$(date '+%s')
@@ -50,6 +50,46 @@ checkSuccess() {
 
 printf -- "\e[38;05;2;49;24;27m--\e[0m \e[38;05;2;49;04;27mStarting build process\e[0m\n"
 printf -- "\e[38;05;2;49;24;27m-- Compiler: \e[0m \e[38;05;3;49;04;27mgcc\e[0m\n\n"
+
+recompile="False"
+printHeader src/BalanceTree.c
+checkRecomp src/BalanceTree.c build/src/BalanceTree.hash build/src/ build/src/BalanceTree.o 
+if [ $recompile == "True" ]
+then
+    gcc -c -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/BalanceTree.c -o build/src/BalanceTree.o 
+    checkSuccess build/src/BalanceTree.o build/src/BalanceTree.hash
+    echo "$(md5sum src/BalanceTree.c)" > build/src/BalanceTree.hash
+fi
+
+recompile="False"
+printHeader src/Distance.c
+checkRecomp src/Distance.c build/src/Distance.hash build/src/ build/src/Distance.o 
+if [ $recompile == "True" ]
+then
+    gcc -c -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/Distance.c -o build/src/Distance.o 
+    checkSuccess build/src/Distance.o build/src/Distance.hash
+    echo "$(md5sum src/Distance.c)" > build/src/Distance.hash
+fi
+
+recompile="False"
+printHeader src/EquationSolver.c
+checkRecomp src/EquationSolver.c build/src/EquationSolver.hash build/src/ build/src/EquationSolver.o 
+if [ $recompile == "True" ]
+then
+    gcc -c -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/EquationSolver.c -o build/src/EquationSolver.o 
+    checkSuccess build/src/EquationSolver.o build/src/EquationSolver.hash
+    echo "$(md5sum src/EquationSolver.c)" > build/src/EquationSolver.hash
+fi
+
+recompile="False"
+printHeader src/Layers.c
+checkRecomp src/Layers.c build/src/Layers.hash build/src/ build/src/Layers.o 
+if [ $recompile == "True" ]
+then
+    gcc -c -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/Layers.c -o build/src/Layers.o 
+    checkSuccess build/src/Layers.o build/src/Layers.hash
+    echo "$(md5sum src/Layers.c)" > build/src/Layers.hash
+fi
 
 recompile="False"
 printHeader src/Menu.c
@@ -157,7 +197,7 @@ checkRecomp src/main.c build/src/main.hash build/src/ build/src/main.out
 if [ $recompile == "True" ] || [ $main_should_recompile == "True" ]
 then
     printf -- "..... \e[38;05;3;49;04;27mmain.c\e[0m \e[38;05;10;49;24;27mis updating, because other files have changed\e[0m\n"
-    gcc -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/main.c -o build/src/main.out build/src/Menu.o build/src/Node.o build/src/NodeAdd.o build/src/NodeDeleteAll.o build/src/NodeEdit.o build/src/NodeViewNonRecursive.o build/src/NodeViewRecursive.o build/src/NodeViewTree.o build/src/Utils.o build/src/Window.o -lncursesw
+    gcc -I"include/" -I"third-party/toolbox/" -I"third-party/tools-storage/include/" -I"third-party/tools-stuff/include/" -L"lib/" src/main.c -o build/src/main.out build/src/BalanceTree.o build/src/Distance.o build/src/EquationSolver.o build/src/Layers.o build/src/Menu.o build/src/Node.o build/src/NodeAdd.o build/src/NodeDeleteAll.o build/src/NodeEdit.o build/src/NodeViewNonRecursive.o build/src/NodeViewRecursive.o build/src/NodeViewTree.o build/src/Utils.o build/src/Window.o -lncursesw
     checkSuccess build/src/main.out build/src/main.hash
     echo "$(md5sum src/main.c)" > build/src/main.hash
 fi

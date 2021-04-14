@@ -20,6 +20,10 @@
         "binaries": "-lncursesw"
     },
     "sources": [
+        { "path": "src/BalanceTree.c", "flags": "", "binaries": "" },
+        { "path": "src/Distance.c", "flags": "", "binaries": "" },
+        { "path": "src/EquationSolver.c", "flags": "", "binaries": "" },
+        { "path": "src/Layers.c", "flags": "", "binaries": "" },
         { "path": "src/Menu.c", "flags": "", "binaries": "" },
         { "path": "src/Node.c", "flags": "", "binaries": "" },
         { "path": "src/NodeAdd.c", "flags": "", "binaries": "" },

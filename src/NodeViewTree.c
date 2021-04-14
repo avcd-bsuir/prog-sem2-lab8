@@ -5,7 +5,7 @@
  * Binary trees.
  *
  * Written by AlexeyFilich
- * 11 apr 2021
+ * 12 apr 2021
  */
 
 #include "NodeViewTree.h"
@@ -158,7 +158,7 @@ bool nodeViewTreeGenerate(Node *node, int **buffer, int *w, int *h, int *center)
 }
 
 void nodeViewTreeCreateWindow() {
-    newWindow(L"View dictionary (tree)", 3, 5, getmaxx(stdscr) - 6, getmaxy(stdscr) - 6, nodeViewTreeUpdateContents, nodeViewTreeHandleInput);
+    newWindow(L"View dictionary (tree)", 3, 3, getmaxx(stdscr) - 6, getmaxy(stdscr) - 6, nodeViewTreeUpdateContents, nodeViewTreeHandleInput);
     nodeViewTree.x = 0;
     nodeViewTree.y = 0;
     nodeViewTree.w = 0;
